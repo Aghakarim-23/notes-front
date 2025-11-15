@@ -1,12 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: "",
+    email: "agakerim@example.com",
+    password: "123456",
   });
+
+  const {login} = useAuth()
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,10 +20,21 @@ const Login = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register data:", form);
+
+    try {
+        const res = await login(form)
+        navigate("/notes")
+        console.log("response", res.data)
+    } catch (error) {
+        console.error(error)
+    }
+
+    
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -56,7 +73,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Register
+            Login
           </button>
         </form>
       </div>

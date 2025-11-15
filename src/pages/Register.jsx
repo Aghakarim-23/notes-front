@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+
+
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -8,15 +11,23 @@ const Register = () => {
     password: "",
   });
 
+  const {register} = useAuth()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register data:", form);
+
+    try {
+      await register(form)
+      console.log(res)
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (
