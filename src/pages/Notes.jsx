@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import api from "../api/api";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,9 +32,10 @@ const Notes = () => {
   }, [token]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-4xl mx-auto relative">
-        <h1 className="text-3xl font-bold mb-6 text-center">Your Notes</h1>
+    <div className="min-h-screen bg-gray-100 ">
+      {token && <Navbar/>}
+      <div className="max-w-4xl mx-auto relative p-4">
+        <h1 className="text-3xl font-bold my-8 text-center">Your Notes</h1>
 
         <button
           onClick={() => navigate("/createNote")}

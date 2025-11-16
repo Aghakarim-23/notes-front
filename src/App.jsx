@@ -7,12 +7,15 @@ import {AuthProvider} from "./context/AuthContext.jsx"
 import ProtectedPage from "./components/ProtectedPage.jsx";
 import CreateNote from "./components/CreateNote.jsx";
 import NoteDetail from "./pages/NoteDetail.jsx";
+import Home from "./pages/Home.jsx";
+import NoteEdit from "./pages/NoteEdit.jsx";
  
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/notes" element={<ProtectedPage>
             <Notes />
           </ProtectedPage>} />
@@ -20,6 +23,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/createNote" element={<CreateNote />} />
           <Route path="/notes/noteDetail/:id" element={<NoteDetail />} />
+          <Route path="/notes/noteEdit/:id" element={<NoteEdit />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -4,18 +4,16 @@ import api from "../api/api";
 import { useAuth } from "../context/AuthContext";
 
 const NoteDetail = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const { token } = useAuth();
   const navigate = useNavigate();
 
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        setLoading(true);
         const res = await api.get(`/notes/noteDetail/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -32,49 +30,48 @@ const NoteDetail = () => {
   const handleDelete = async () => {
 
     try {
-      setDeleting(true);
-      await api.delete(`/notes/${id}`, {
+      await api.delete(`/notes/deleteNote/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      navigate("/notes"); 
+      navigate("/notes");
     } catch (err) {
       console.error(err);
-    } finally {
-      setDeleting(false);
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading note...</p>;
+  if (loading) return <p className="text-center mt-10">Loading...</p>;
   if (!note) return <p className="text-center mt-10">Note not found</p>;
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 flex justify-center">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl">
-        <h1 className="text-2xl font-bold mb-4">{note.title}</h1>
-        <p className="text-gray-700 mb-4">{note.content}</p>
-        <p className="text-sm text-gray-400 mb-6">
-          Created: {new Date(note.createdAt).toLocaleDateString()}
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
+
+        <h1 className="text-xl font-semibold mb-3">{note.title}</h1>
+
+        <p className="text-gray-700 whitespace-pre-line mb-4">
+          {note.content}
         </p>
 
-        <div className="flex gap-4">
-          {/* Edit button (optional) */}
+        <p className="text-xs text-gray-400 mb-6">
+          {new Date(note.createdAt).toLocaleString()}
+        </p>
+
+        <div className="flex justify-between">
           <button
-            className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
-            onClick={() => navigate(`/edit-note/${id}`)}
+            onClick={() => navigate(`/notes/noteEdit/${id}`)}
+            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
           >
             Edit
           </button>
 
           <button
-            className={`bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition ${
-              deleting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
             onClick={handleDelete}
-            disabled={deleting}
+            className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition"
           >
-            {deleting ? "Deleting..." : "Delete"}
+            Delete
           </button>
         </div>
+
       </div>
     </div>
   );

@@ -40,6 +40,11 @@ const register = async (form) => {
     }
 }
 
+const logout = () => {
+    setUser(null)
+    localStorage.removeItem("accessToken")
+}
+
 
 useEffect(() => {
     const storedToken = localStorage.getItem("accessToken")
@@ -52,7 +57,7 @@ useEffect(() => {
 },[])
 
     return(
-        <AuthContext.Provider value={{login, register, token, user, setUser, loading}}>
+        <AuthContext.Provider value={{login, logout, register, token, user, setUser, loading}}>
             {children}
         </AuthContext.Provider>
     )
