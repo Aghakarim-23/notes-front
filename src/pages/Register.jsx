@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,6 +11,8 @@ const Register = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate()
 
   const {register} = useAuth()
 
@@ -24,7 +27,7 @@ const Register = () => {
 
     try {
       await register(form)
-      console.log(res)
+      navigate("/login")
     } catch (error) {
       console.error(error)
     }
