@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/api";
+import { toast } from "react-toastify";
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
+  const [deletingUser, setDeletingUser] = useState(null)
 
   useEffect(() => {
     const getAllUser = async () => {
@@ -17,28 +19,38 @@ const Admin = () => {
     getAllUser();
   }, []);
 
-  const deleteUser = () => {
+  const deleteUser = async (id) => {
+    setDeletingUser(id)
+    setUsers(prev => prev.filter(item => item._id !== id))
     try {
-        console.log("error")
+      const res = await api.delete(`users/${id}`)
+        toast.success(res.data.message)
+        
     } catch (error) {
         console.error(error)
+    } finally {
+        setDeletingUser(null)
     }
   }
 
   return (
     <div className="h-screen flex justify-center items-center">
       <table className="">
-        <thead >``
+        <thead >
           <tr className="bg-green-400">
+            <th className="border px-3 ">No</th>
             <th className="border py-3 px-3 text-white border-black">Email</th>
             <th className="border py-3 px-3 text-white border-black">Yaradilib</th>
+            <th className="border py-3 px-3 text-white border-black">Role</th>
             <th className="border py-3 px-3 text-white border-black">Operation</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
+          {users.map((user,index) => (
+            <tr key={user._id}>
+              <td className="border px-3 ">{index + 1}</td>
               <td className="border px-3 ">{user.email}</td>
+              <td className={`border px-3 ${user.role === "admin" && "bg-green-200"}`}>{user.role}</td>
               <td className="border px-3 ">{(
                 () => {
                 const date = new Date(user.createdAt)
@@ -47,9 +59,9 @@ const Admin = () => {
               )()}</td>
               
               <td 
-                onClick={() => deleteUser()}
+                onClick={() => deleteUser(user._id)}
                 className="border px-3 text-center bg-red-500 text-white border-black cursor-pointer hover:opacity-50">
-                sil
+                {deletingUser === user._id ? "Silinir..." : "Sil"}
               </td>
             </tr>
           ))}

@@ -10,6 +10,8 @@ import NoteDetail from "./pages/NoteDetail.jsx";
 import Home from "./pages/Home.jsx";
 import NoteEdit from "./pages/NoteEdit.jsx";
 import Admin from "./pages/Admin.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+
  
 const App = () => {
   return (
@@ -28,6 +30,7 @@ const App = () => {
           <Route path="/notes/noteEdit/:id" element={<NoteEdit />} />
         </Routes>
       </Router>
+    <ToastContainer />
     </AuthProvider>
   );
 };
