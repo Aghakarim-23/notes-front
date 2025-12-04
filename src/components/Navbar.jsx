@@ -14,7 +14,10 @@ const Navbar = () => {
     <div className='flex justify-between h-[5rem] px-4 items-center relative border-b'>
         <Link to={'/notes'} className='text-[20px]'>Notes</Link>
         <div className='flex flex-col' onClick={() => setShowProfile(prev => !prev)}>
-            <CgProfile className='text-[22px]'/>
+            <div className='flex gap-2'>
+              <CgProfile className='text-[22px]'/>
+              <button >{user && user.username}</button>
+            </div>
             {showProfile && <button className='text-red-500 absolute top-12 right-0' 
                 onClick={() => logout()}
             >Logout</button>}

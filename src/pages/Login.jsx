@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    email: "amil@mail.ru",
+    password: "thisIsMyStrongPassword",
   });
 
   
@@ -27,7 +27,6 @@ const Login = () => {
     try {
         const res = await login(form)
         navigate("/notes")
-        console.log("response", res.data)
     } catch (error) {
         console.error(error)
     }
