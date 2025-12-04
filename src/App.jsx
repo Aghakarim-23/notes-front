@@ -9,6 +9,7 @@ import CreateNote from "./components/CreateNote.jsx";
 import NoteDetail from "./pages/NoteDetail.jsx";
 import Home from "./pages/Home.jsx";
 import NoteEdit from "./pages/NoteEdit.jsx";
+import Admin from "./pages/Admin.jsx";
  
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           </ProtectedPage>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/createNote" element={<CreateNote />} />
           <Route path="/notes/noteDetail/:id" element={<NoteDetail />} />
           <Route path="/notes/noteEdit/:id" element={<NoteEdit />} />
