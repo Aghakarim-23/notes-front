@@ -28,11 +28,10 @@ const register = async (form) => {
     setLoading(true)
     try {
         const res = await api.post("/api/auth/login", form, )
-        console.log(res.data)
-        console.log(`role: ${res.data.user.role}`)
 
         const user = res.data.user
 
+        console.log(user)
        
         
         localStorage.setItem("accessToken", res.data.token)
@@ -58,9 +57,14 @@ useEffect(() => {
     const storedToken = localStorage.getItem("accessToken")
     const user = localStorage.getItem("user")
 
-        if(storedToken) {
-         setUser(JSON.parse(user))
+        if(storedToken && user) 
+            try {
+            setUser(JSON.parse(user))
             setToken(storedToken)
+            } catch (error) {
+            console.error("Failed to parse user from localStorage", err);
+          setUser(null);
+          setToken(null);    
         }
         setLoading(false)
 },[])

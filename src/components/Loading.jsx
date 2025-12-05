@@ -13,3 +13,14 @@ export default function Loading() {
     </div>
   );
 }
+export const AdminProtectedPage = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <Loading />;
+
+  if (!user) return <Navigate to="/login" replace />;
+
+  if (user.role !== "admin") return <Navigate to="/forbidden" replace />;
+
+  return children;
+};
