@@ -11,8 +11,8 @@ import { FaRegEye } from "react-icons/fa";
 
 const Login = () => {
   const [form, setForm] = useState({
-    email: "ibrahim@admin.com",
-    password: "admin321",
+    email: "",
+    password: "",
   });
 
 

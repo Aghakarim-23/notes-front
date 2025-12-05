@@ -11,7 +11,7 @@ const Navbar = () => {
     const [showProfile, setShowProfile] = useState(false)
 
   return (
-    <div className='flex justify-between h-20 px-4 items-center relative border-b '>
+    <div className='flex justify-between h-24 px-4 items-center relative border-b '>
         <Link to={'/notes'} className='text-[20px]'>Notes</Link>
         {user?.role === "admin" && <Link to={'/admin'} className='text-[20px]'>Admin</Link>}
         <div className='flex flex-col' onClick={() => setShowProfile(prev => !prev)}>
@@ -19,9 +19,11 @@ const Navbar = () => {
               <CgProfile className='text-[22px]'/>
               <button >{user && user.username}</button>
             </div>
-            {showProfile && <button className='text-red-500 absolute top-12 right-0' 
-                onClick={() => logout()}
-            >Logout</button>}
+            <div className=''>
+              {showProfile && <button className='text-red-600 absolute top-16 right-4 cursor-pointer hover:opacity-70 border-zinc-300 rounded-md border px-2'
+                  onClick={() => logout()}
+              >Logout</button>}
+            </div>
         </div>
     </div>
   )
