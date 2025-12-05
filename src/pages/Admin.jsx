@@ -34,7 +34,11 @@ const Admin = () => {
     setDeletingUser(id);
     setUsers((prev) => prev.filter((item) => item._id !== id));
     try {
-      const res = await api.delete(`users/${id}`);
+      const res = await api.delete(`users/${id}` , {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+      });
       toast.success(res.data.message);
     } catch (error) {
       console.error(error);

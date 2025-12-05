@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   
-  const {login} = useAuth()
+  const {login,loading} = useAuth()
 
   const navigate = useNavigate()
 
@@ -71,7 +71,8 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className={`w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition  ${loading ? "opacity-40 cursor-not-allowed": "cursor-pointer"}`}
+            disabled={loading}
           >
             Login
           </button>
