@@ -11,7 +11,7 @@ const Navbar = () => {
     const [showProfile, setShowProfile] = useState(false)
 
   return (
-    <div className='flex justify-between h-20 px-4 items-center relative border-b'>
+    <div className='flex justify-between h-20 px-4 items-center relative border-b '>
         <Link to={'/notes'} className='text-[20px]'>Notes</Link>
         {user?.role === "admin" && <Link to={'/admin'} className='text-[20px]'>Admin</Link>}
         <div className='flex flex-col' onClick={() => setShowProfile(prev => !prev)}>

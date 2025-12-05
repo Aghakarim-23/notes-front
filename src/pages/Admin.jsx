@@ -49,55 +49,54 @@ const Admin = () => {
   };
 
   return (
-    <div className="">
-            {token && <Navbar/>}
-     <div>
-       <table className="mx-auto mt-20">
-        <thead>
-          <tr className="bg-green-400">
-            <th className="border px-3 ">No</th>
-            <th className="border py-3 px-3 text-white border-black">Email</th>
-            <th className="border py-3 px-3 text-white border-black">
-              Yaradilib
-            </th>
-            <th className="border py-3 px-3 text-white border-black">Role</th>
-            <th className="border py-3 px-3 text-white border-black">
-              Operation
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user._id}>
-              <td className="border px-3 ">{index + 1}</td>
-              <td className="border px-3 ">{user.email}</td>
-              <td
-                className={`border px-3 ${
-                  user.role === "admin" && "bg-green-200"
-                }`}
-              >
-                {user.role}
-              </td>
-              <td className="border px-3 ">
-                {(() => {
-                  const date = new Date(user.createdAt);
-                  return `${date.getDate()}-${
-                    date.getMonth() + 1
-                  }-${date.getFullYear()}`;
-                })()}
-              </td>
-
-              <td
-                onClick={() => deleteUser(user._id)}
-                className="border px-3 text-center bg-red-500 text-white border-black cursor-pointer hover:opacity-50"
-              >
-                {deletingUser === user._id ? "Silinir..." : "Sil"}
-              </td>
+    <div className="overflow-hidden">
+      {token && <Navbar/>}
+    <div className="overflow-x-auto px-5 pb-8">
+      <table className="mx-auto min-w-max mt-20 overflow-x-scroll">
+          <thead>
+            <tr className="bg-green-400">
+              <th className="border px-3 ">No</th>
+              <th className="border py-3 px-3 text-white border-black">Email</th>
+              <th className="border py-3 px-3 text-white border-black">
+                Yaradilib
+              </th>
+              <th className="border py-3 px-3 text-white border-black">Role</th>
+              <th className="border py-3 px-3 text-white border-black">
+                Operation
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-     </div>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <td className="border px-3 ">{index + 1}</td>
+                <td className="border px-3 ">{user.email}</td>
+                <td
+                  className={`border px-3 ${
+                    user.role === "admin" && "bg-green-200"
+                  }`}
+                >
+                  {user.role}
+                </td>
+                <td className="border px-3 ">
+                  {(() => {
+                    const date = new Date(user.createdAt);
+                    return `${date.getDate()}-${
+                      date.getMonth() + 1
+                    }-${date.getFullYear()}`;
+                  })()}
+                </td>
+                <td
+                  onClick={() => deleteUser(user._id)}
+                  className="border px-3 text-center bg-red-500 text-white border-black cursor-pointer hover:opacity-50"
+                >
+                  {deletingUser === user._id ? "Silinir..." : "Sil"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+    </div>
     </div>
   );
 };
