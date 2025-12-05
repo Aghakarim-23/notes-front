@@ -50,6 +50,8 @@ const register = async (form) => {
 const logout = () => {
     setUser(null)
     localStorage.removeItem("accessToken")
+    localStorage.removeItem("user")
+
 }
 
 
