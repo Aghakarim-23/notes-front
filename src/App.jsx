@@ -7,7 +7,6 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import ProtectedPage from "./components/ProtectedPage.jsx";
 import CreateNote from "./components/CreateNote.jsx";
 import NoteDetail from "./pages/NoteDetail.jsx";
-import Home from "./pages/Home.jsx";
 import NoteEdit from "./pages/NoteEdit.jsx";
 import Admin from "./pages/Admin.jsx";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,7 +19,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route
             path="/notes"
             element={

@@ -3,6 +3,10 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEye } from "react-icons/fa";
+
+
 
 
 const Login = () => {
@@ -14,6 +18,8 @@ const Login = () => {
 
   
   const {login,loading} = useAuth()
+
+  const [showPassword, setShowPassword] = useState(false)
 
   const navigate = useNavigate()
 
@@ -63,10 +69,10 @@ const Login = () => {
             />
           </div>
 
-          <div>
-            <label className="text-gray-600 text-sm">Password</label>
+          <div className="relative">
+            <label className="te``xt-gray-600 text-sm">Password</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={form.password}
               onChange={handleChange}
@@ -74,6 +80,15 @@ const Login = () => {
               placeholder="Enter password"
               required
             />
+            {showPassword ? 
+            <FaRegEye 
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-10 right-4 cursor-pointer"/> : 
+            <FaRegEyeSlash 
+             onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-10 right-4 cursor-pointer"/>}
+            
+
           </div>
           
           <button

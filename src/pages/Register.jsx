@@ -95,7 +95,7 @@ const Register = () => {
               className="text-blue-600 cursor-pointer hover:underline"
               onClick={() => navigate("/login")}
             >
-              Login
+              Log In
             </span>
           </p>
         </div>
