@@ -35,7 +35,9 @@ const App = () => {
           <Route path="/register" element={<GuestRoute>
             <Register />
           </GuestRoute>} />
-          <Route path="/createNote" element={<CreateNote />} />
+          <Route path="/createNote" element={<ProtectedPage>
+            <CreateNote />
+          </ProtectedPage>} />
           <Route path="/notes/noteDetail/:id" element={<NoteDetail />} />
           <Route path="/notes/noteEdit/:id" element={<NoteEdit />} />
 
