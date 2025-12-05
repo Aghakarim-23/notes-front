@@ -29,10 +29,7 @@ const register = async (form) => {
     try {
         const res = await api.post("/api/auth/login", form, )
 
-        const user = res.data.user
-
-        console.log(user)
-       
+        const user = res.data.user       
         
         localStorage.setItem("accessToken", res.data.token)
         localStorage.setItem("user", JSON.stringify(user))
@@ -42,6 +39,7 @@ const register = async (form) => {
         return res
     } catch (error) {
         console.log(error)
+        throw error;
     } finally {
         setLoading(false)
     }

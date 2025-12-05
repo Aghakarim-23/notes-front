@@ -13,6 +13,7 @@ import Admin from "./pages/Admin.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import Forbidden from "./pages/Forbidden.jsx";
 import AdminProtectedPage from "./components/AdminProtectedPage.jsx";
+import GuestRoute from "./components/GuestRoute.jsx";
 
 const App = () => {
   return (
@@ -28,8 +29,12 @@ const App = () => {
               </ProtectedPage>
             }
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<GuestRoute>
+            <Login />
+          </GuestRoute>} />
+          <Route path="/register" element={<GuestRoute>
+            <Register />
+          </GuestRoute>} />
           <Route path="/createNote" element={<CreateNote />} />
           <Route path="/notes/noteDetail/:id" element={<NoteDetail />} />
           <Route path="/notes/noteEdit/:id" element={<NoteEdit />} />
@@ -45,7 +50,9 @@ const App = () => {
             <Route path="/forbidden" element={<Forbidden />} />
         </Routes>
       </Router>
-      <ToastContainer />
+      <ToastContainer 
+        autoClose={1000}
+      />
     </AuthProvider>
   );
 };

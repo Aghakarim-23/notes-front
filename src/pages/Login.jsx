@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
     email: "ibrahim@admin.com",
     password: "admin321",
   });
+
 
   
   const {login,loading} = useAuth()
@@ -28,7 +30,8 @@ const Login = () => {
         const res = await login(form)
         navigate("/notes")
     } catch (error) {
-        console.error(error)
+      toast.error(error.response?.data?.message || error.message)
+      console.error(error)
     }
 
     
@@ -68,7 +71,7 @@ const Login = () => {
               required
             />
           </div>
-
+          
           <button
             type="submit"
             className={`w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition  ${loading ? "opacity-40 cursor-not-allowed": "cursor-pointer"}`}
