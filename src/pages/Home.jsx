@@ -21,17 +21,7 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="text-center">
-          <p className="text-gray-600">
-            Don't have an account?{" "}
-            <span
-              className="text-blue-600 cursor-pointer hover:underline"
-              onClick={() => navigate("/register")}
-            >
-              Register
-            </span>
-          </p>
-        </div>
+      
       </div>
     </div>
   );
