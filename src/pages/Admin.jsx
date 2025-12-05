@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar'
+import ConfirmModal from "../components/ConfirmModal";
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
-  const [deletingUser, setDeletingUser] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState(null)
+  const [isOpenModal,setIsOpenModal] = useState(false) 
   const { token } = useAuth();
   const navigate = useNavigate()
 
@@ -32,7 +34,6 @@ const Admin = () => {
   }, []);
 
   const deleteUser = async (id) => {
-    setDeletingUser(id);
     setUsers((prev) => prev.filter((item) => item._id !== id));
     try {
       const res = await api.delete(`users/${id}` , {
@@ -50,6 +51,7 @@ const Admin = () => {
 
   return (
     <div className="overflow-hidden">
+      <ConfirmModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} onConfirm={() => deleteUser(selectedUserId)}/>
       {token && <Navbar/>}
     <div className="overflow-x-auto px-5 pb-8">
       <table className="mx-auto min-w-max mt-20 overflow-x-scroll">
@@ -87,10 +89,13 @@ const Admin = () => {
                   })()}
                 </td>
                 <td
-                  onClick={() => deleteUser(user._id)}
+                  onClick={() => {
+                    setSelectedUserId(user._id)
+                    setIsOpenModal(!isOpenModal)
+                  }}
                   className="border px-3 text-center bg-red-500 text-white border-black cursor-pointer hover:opacity-50"
                 >
-                  {deletingUser === user._id ? "Silinir..." : "Sil"}
+                  Sil
                 </td>
               </tr>
             ))}
