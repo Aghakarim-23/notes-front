@@ -27,6 +27,7 @@ api.interceptors.response.use(
 
     if (status === 401 || status === 403) {
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
       setTimeout(() => {
         window.location.href = "/login";
       }, 10);
