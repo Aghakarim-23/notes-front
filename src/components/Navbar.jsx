@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className='flex justify-between h-20 px-4 items-center relative border-b'>
         <Link to={'/notes'} className='text-[20px]'>Notes</Link>
-        <Link to={'/admin'} className='text-[20px]'>Admin</Link>
+        {user?.role === "admin" && <Link to={'/admin'} className='text-[20px]'>Admin</Link>}
         <div className='flex flex-col' onClick={() => setShowProfile(prev => !prev)}>
             <div className='flex gap-2'>
               <CgProfile className='text-[22px]'/>

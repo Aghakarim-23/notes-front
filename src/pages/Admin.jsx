@@ -3,6 +3,7 @@ import api from "../api/api";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar'
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
@@ -48,8 +49,10 @@ const Admin = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <table className="">
+    <div className="">
+            {token && <Navbar/>}
+     <div>
+       <table className="mx-auto mt-20">
         <thead>
           <tr className="bg-green-400">
             <th className="border px-3 ">No</th>
@@ -94,6 +97,7 @@ const Admin = () => {
           ))}
         </tbody>
       </table>
+     </div>
     </div>
   );
 };
