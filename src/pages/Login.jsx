@@ -96,7 +96,7 @@ const Login = () => {
             className={`w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition  ${loading ? "opacity-40 cursor-not-allowed": "cursor-pointer"}`}
             disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
           <div className="text-center my-6">

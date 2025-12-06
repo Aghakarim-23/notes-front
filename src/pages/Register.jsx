@@ -12,6 +12,8 @@ const Register = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
 
   const {register} = useAuth()
@@ -24,12 +26,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       await register(form)
       navigate("/login")
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -83,9 +87,10 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-80"
+            disabled={loading}
           >
-            Register
+          {loading ? "Registering..." : "Register``"}
           </button>
         </form>
            <div className="text-center my-6">

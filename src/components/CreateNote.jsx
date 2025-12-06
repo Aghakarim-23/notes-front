@@ -74,7 +74,7 @@ const CreateNote = () => {
             type="submit"
             disabled={loading}
             className={`w-full py-2 rounded-lg text-white ${
-              loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+              loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 cursor-pointer"
             } transition`}
           >
             {loading ? "Creating..." : "Create Note"}

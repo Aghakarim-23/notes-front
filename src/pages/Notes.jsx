@@ -39,7 +39,7 @@ const Notes = () => {
 
         <button
           onClick={() => navigate("/createNote")}
-          className="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full text-3xl flex items-center justify-center shadow-lg hover:bg-blue-700 transition"
+          className="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full text-3xl flex items-center justify-center shadow-lg hover:bg-blue-700 transition cursor-pointer" 
         >
           +
         </button>
