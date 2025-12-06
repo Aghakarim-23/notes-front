@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa";
@@ -110,6 +110,17 @@ const Login = () => {
             </span>
           </p>
         </div>
+
+
+
+             <Link to="/forgot-password" className="text-center my-6">
+          <p className="text-blue-600 cursor-pointer hover:underline">
+           Forgot password ?
+           
+          </p>
+        </Link>
+
+
       </div>
     </div>
   );

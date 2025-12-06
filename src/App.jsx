@@ -13,6 +13,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Forbidden from "./pages/Forbidden.jsx";
 import AdminProtectedPage from "./components/AdminProtectedPage.jsx";
 import GuestRoute from "./components/GuestRoute.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 const App = () => {
   return (
@@ -49,6 +51,8 @@ const App = () => {
             }
           />
             <Route path="/forbidden" element={<Forbidden />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route path="/reset-password/:id" element={<ResetPassword/>}/>
         </Routes>
       </Router>
       <ToastContainer 
