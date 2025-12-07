@@ -52,7 +52,7 @@ const App = () => {
           />
             <Route path="/forbidden" element={<Forbidden />} />
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
-            <Route path="/reset-password/:id" element={<ResetPassword/>}/>
+            <Route path="/reset-password/:token" element={<ResetPassword/>}/>
         </Routes>
       </Router>
       <ToastContainer 

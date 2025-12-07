@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -8,23 +9,29 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
+
     if (password !== confirmPassword) {
       return setMessage("Passwords do not match!");
     }
 
+  
     setLoading(true);
     setMessage("");
 
     try {
-      const res = await api.post(`api/auth/resetPassword/${token}`, {
+      const res = await api.post(`api/auth/reset-password/${token}`, {
         password,
       });
+
 
       setMessage("Password reset successful!");
       setPassword("");
       setConfirmPassword("");
+
+      navigate("/")
 
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
@@ -44,9 +51,8 @@ const ResetPassword = () => {
       >
         <h2 className="text-2xl font-bold text-center">Reset Password</h2>
 
-        {/* Message */}
         {message && (
-          <p className="text-center mt-3 text-red-600 font-medium">{message}</p>
+          <p className="text-center mt-3 text-green-600 font-medium">{message}</p>
         )}
 
         <div className="flex flex-col mt-4">
@@ -76,7 +82,7 @@ const ResetPassword = () => {
         <button
           type="submit"
           disabled={loading}
-          className="block mx-auto mt-5 rounded-md bg-blue-600 px-4 py-2 text-white hover:opacity-80 transition disabled:opacity-50"
+          className="block mx-auto mt-5 rounded-md bg-blue-600 px-4 py-2 text-white hover:opacity-80 transition cursor-pointer disabled:opacity-50"
         >
           {loading ? "Resetting..." : "Reset Password"}
         </button>

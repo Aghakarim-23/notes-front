@@ -3,12 +3,13 @@ import api from "../api/api";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("")
 
   const handleSubmit = async () => {
     setLoading(true);
     try {
         const res = await api.post("api/auth/forgotPassword", {email})
-        console.log(res)
+        setMessage(res.data.message)
         setEmail("")
     } catch (error) {
       console.error(error);
@@ -27,6 +28,9 @@ const ForgotPassword = () => {
       >
         <div>
           <h2 className="text-2xl font-bold text-center">Forgot Password</h2>
+          {message && (
+            <p className="text-center mt-3 text-green-600 font-medium">{message}</p>
+          )}
           <div className="flex flex-col mt-4">
             <label htmlFor="email">Email</label>
             <input
