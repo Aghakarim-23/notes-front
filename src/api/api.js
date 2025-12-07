@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8001/",
-  // baseURL: 'https://notes-backend-in1c.onrender.com/',
+  baseURL: import.meta.env.VITE_APP_BASE_URL,
 
   headers: {
     "Content-Type": "application/json",
