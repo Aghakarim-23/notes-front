@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { useAuth } from "../context/AuthContext";
+import BackButton from "../components/shared/BackButton";
 
 const NoteEdit = () => {
   const { id } = useParams(); // Get note ID from URL
@@ -54,8 +55,9 @@ const NoteEdit = () => {
   if (loading) return <p className="text-center mt-10">Loading note...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 flex justify-center">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl">
+    <div className="min-h-screen bg-gray-100 p-4 flex justify-center items-center">
+      <BackButton style="absolute top-6 md:top-8 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition"/>
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl mt-18">
         <h1 className="text-2xl font-bold mb-6 text-center">Edit Note</h1>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -84,7 +86,7 @@ const NoteEdit = () => {
           <button
             type="submit"
             disabled={updating}
-            className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+            className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition cursor-pointer"
           >
             {updating ? "Updating..." : "Update Note"}
           </button>
