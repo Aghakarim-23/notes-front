@@ -57,21 +57,19 @@ const Admin = () => {
       <table className="mx-auto min-w-max mt-20 overflow-x-scroll">
           <thead>
             <tr className="bg-green-400">
-              <th className="border px-3 ">No</th>
+              <th className="border px-3 text-white border-black">No</th>
+              <th className="border py-3 px-3 text-white border-black">Username</th>
               <th className="border py-3 px-3 text-white border-black">Email</th>
-              <th className="border py-3 px-3 text-white border-black">
-                Yaradilib
-              </th>
               <th className="border py-3 px-3 text-white border-black">Role</th>
-              <th className="border py-3 px-3 text-white border-black">
-                Operation
-              </th>
+              <th className="border py-3 px-3 text-white border-black">Created </th>
+              <th className="border py-3 px-3 text-white border-black">Operation</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
               <tr key={user._id}>
                 <td className="border px-3 ">{index + 1}</td>
+                <td className="border px-3 ">{user.username}</td>
                 <td className="border px-3 ">{user.email}</td>
                 <td
                   className={`border px-3 ${
@@ -95,7 +93,7 @@ const Admin = () => {
                   }}
                   className="border px-3 text-center bg-red-500 text-white border-black cursor-pointer hover:opacity-50"
                 >
-                  Sil
+                  Delete
                 </td>
               </tr>
             ))}
