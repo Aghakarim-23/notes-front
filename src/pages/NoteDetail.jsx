@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { useAuth } from "../context/AuthContext";
+import { MdOutlineArrowBack } from "react-icons/md";
+
 
 const NoteDetail = () => {
   const { id } = useParams();
@@ -43,8 +45,13 @@ const NoteDetail = () => {
   if (!note) return <p className="text-center mt-10">Note not found</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 flex justify-center">
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
+    <div className="h-screen bg-gray-100 flex p-4 justify-center items-center relative">
+      <div
+          onClick={() => navigate("/notes")} 
+          className="absolute top-10 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition">
+        <MdOutlineArrowBack  className="text-3xl"/>
+      </div>
+      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-xl">
 
         <h1 className="text-xl font-semibold mb-3">{note.title}</h1>
 
