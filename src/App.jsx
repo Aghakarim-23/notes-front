@@ -15,6 +15,7 @@ import AdminProtectedPage from "./components/AdminProtectedPage.jsx";
 import GuestRoute from "./components/GuestRoute.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import AllNotes from "./pages/AllNotes.jsx";
 
 const App = () => {
   return (
@@ -53,6 +54,9 @@ const App = () => {
             <Route path="/forbidden" element={<Forbidden />} />
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password/:token" element={<ResetPassword/>}/>
+            <Route path="/all-notes" element={<ProtectedPage>
+              <AllNotes/>
+            </ProtectedPage>}/>
         </Routes>
       </Router>
       <ToastContainer 
