@@ -21,6 +21,8 @@ const Admin = () => {
             Authorization: `Bearer: ${token}`,
           },
         });
+
+       
         setUsers(data.data.users);
       } catch (error) {
         if (error.response?.status === 403) {
