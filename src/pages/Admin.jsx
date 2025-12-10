@@ -21,7 +21,6 @@ const Admin = () => {
             Authorization: `Bearer: ${token}`,
           },
         });
-        updateUser(data.data.user)
         setUsers(data.data.users);
       } catch (error) {
         if (error.response?.status === 403) {
@@ -57,10 +56,12 @@ const Admin = () => {
         {...user, role: newRole} : user 
       ))
 
-    try {
-      const res = await api.put(`/users/${userId}`, {
-        role: newRole
-      })
+      
+      try {
+        const res = await api.put(`/users/${userId}`, {
+          role: newRole
+        })
+        updateUser(res.data.user)
       toast.success(res.data.message)
     } catch (error) {
       console.error(error)
