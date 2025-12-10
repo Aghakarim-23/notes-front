@@ -10,7 +10,7 @@ const Admin = () => {
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null)
   const [isOpenModal,setIsOpenModal] = useState(false) 
-  const { token, updateUser } = useAuth();
+  const { token, user: currentUser, updateUser } = useAuth();
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -61,7 +61,9 @@ const Admin = () => {
         const res = await api.put(`/users/${userId}`, {
           role: newRole
         })
-        updateUser(res.data.user)
+        if(currentUser._id === userId) {
+          updateUser(res.data.user)
+        }
       toast.success(res.data.message)
     } catch (error) {
       console.error(error)
