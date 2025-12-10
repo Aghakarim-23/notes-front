@@ -66,7 +66,7 @@ useEffect(() => {
             setUser(JSON.parse(user))
             setToken(storedToken)
             } catch (error) {
-            console.error("Failed to parse user from localStorage", err);
+            console.error("Failed to parse user from localStorage", error);
           setUser(null);
           setToken(null);    
         }
