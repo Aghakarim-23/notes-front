@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { useAuth } from "../context/AuthContext";
@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isOpenShowModal, setIsOpenShowModal] = useState(true);
 
   return (
-    <div className="flex justify-between h-24 px-4 items-center relative border-b ">
+    <div className="flex justify-between h-24 px-4 items-center relative  ">
       <Link to={"/notes"} className="text-[20px]">
         Notes
       </Link>
@@ -20,36 +20,47 @@ const Navbar = () => {
           {user?.role === "admin" && <Link to={'/all-notes'} className='text-[20px] hover:opacity-60 transition'>All Posts</Link>}
         </div> */}
       <div
-        className="flex flex-col"
+        className="flex flex-col relative"
         onClick={() => setShowProfile((prev) => !prev)}
       >
         <div className="flex gap-2">
           <CgProfile className="text-[22px]" />
           <button>{user && user.username}</button>
         </div>
-        <div className="">
           {showProfile && (
             <button
-              className="text-red-600 absolute top-16 right-40 cursor-pointer hover:opacity-70 border-zinc-300 rounded-md border px-2"
+              className="bg-white text-red-600 absolute top-10 right-2  cursor-pointer  border-zinc-300 rounded-md border h-8 w-24"
               onClick={() => logout()}
             >
               Logout
             </button>
           )}
-        </div>
+  
       </div>
-      <div
+      
+
+      {user && user.role === 'admin' && (
+        <div
+      
         onClick={() => {
           setIsOpenShowModal(!isOpenShowModal);
         }}
       >
-        <FaBars className="text-2xl" />
+        <FaBars className="text-2xl cursor-pointer" />
       </div>
+      )}
+      
 
-      <SideBar
+
+        {
+          user?.role === "admin"  && 
+             <SideBar
         isOpenShowModal={isOpenShowModal}
         setIsOpenShowModal={setIsOpenShowModal}
       />
+        
+        }
+     
     </div>
   );
 };

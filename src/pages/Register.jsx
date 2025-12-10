@@ -90,7 +90,7 @@ const Register = () => {
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-80"
             disabled={loading}
           >
-          {loading ? "Registering..." : "Register``"}
+          {loading ? "Registering..." : "Register"}
           </button>
         </form>
            <div className="text-center my-6">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../api/api";
 import { useNavigate } from "react-router-dom";
+import BackButton from "./shared/BackButton";
 
 const CreateNote = () => {
   const [form, setForm] = useState({
@@ -40,7 +41,8 @@ const CreateNote = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+      <BackButton style="absolute top-6 md:top-8 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition"/>
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md mt-10">
         <h2 className="text-2xl font-bold text-center mb-6">Create Note</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
