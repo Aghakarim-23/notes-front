@@ -23,8 +23,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error.response?.status;
+    const message = error.response?.data?.message;
 
-    if (status === 401 || status === 403) {
+    if ((status === 401 || status === 403) && message !== "User cannot change own role") {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
       setTimeout(() => {

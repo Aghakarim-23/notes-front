@@ -54,21 +54,25 @@ const Admin = () => {
   const handleEditRole = async (e, userId) => {
     const newRole = e.target.value
    
-      setUsers((prevUsers) => prevUsers.map(user => user._id === userId ? 
-        {...user, role: newRole} : user 
-      ))
-
+     
       
       try {
         const res = await api.put(`/users/${userId}`, {
           role: newRole
         })
+
+         setUsers((prevUsers) => prevUsers.map(user => user._id === userId ? 
+        {...user, role: newRole} : user 
+      ))
+
+
         if(currentUser._id === userId) {
           updateUser(res.data.user)
         }
       toast.success(res.data.message)
     } catch (error) {
       console.error(error)
+      toast.error(error.response?.data?.message || "Something went wrong")
     }
   }
 
