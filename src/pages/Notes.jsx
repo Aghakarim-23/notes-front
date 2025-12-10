@@ -3,11 +3,13 @@ import api from "../api/api";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import SideBar from "../components/SideBar";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
+  const [isOpenShowModal, setIsOpenShowModal] = useState(false)
 
   const navigate = useNavigate();
 
