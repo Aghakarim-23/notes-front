@@ -52,6 +52,10 @@ const logout = () => {
 
 }
 
+const updateUser = (updatedUser) => {
+    setUser(updatedUser)
+    localStorage.setItem("user", JSON.stringify(updatedUser))
+}
 
 useEffect(() => {
     const storedToken = localStorage.getItem("accessToken")
@@ -70,7 +74,7 @@ useEffect(() => {
 },[])
 
     return(
-        <AuthContext.Provider value={{login, logout, register, token, user, setUser, loading}}>
+        <AuthContext.Provider value={{login, logout, register, token, user, setUser, loading, updateUser}}>
             {children}
         </AuthContext.Provider>
     )

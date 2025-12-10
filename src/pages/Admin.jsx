@@ -10,7 +10,7 @@ const Admin = () => {
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null)
   const [isOpenModal,setIsOpenModal] = useState(false) 
-  const { token } = useAuth();
+  const { token, updateUser } = useAuth();
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -21,6 +21,7 @@ const Admin = () => {
             Authorization: `Bearer: ${token}`,
           },
         });
+        updateUser(data.data.user)
         setUsers(data.data.users);
       } catch (error) {
         if (error.response?.status === 403) {
