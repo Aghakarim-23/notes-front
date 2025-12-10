@@ -10,7 +10,6 @@ const AllNotes = () => {
         try {
             const res = await api.get("notes/getAllNotes")
             setGetAllNotes(res.data.notes)
-            console.log(res.data)
         } catch (error) {
             console.error(error.message)
         }

@@ -21,7 +21,6 @@ const Admin = () => {
             Authorization: `Bearer: ${token}`,
           },
         });
-        console.log(data);
         setUsers(data.data.users);
       } catch (error) {
         if (error.response?.status === 403) {
@@ -49,6 +48,25 @@ const Admin = () => {
     }
   };
 
+
+  const handleEditRole = async (e, userId) => {
+    const newRole = e.target.value
+   
+      setUsers((prevUsers) => prevUsers.map(user => user._id === userId ? 
+        {...user, role: newRole} : user 
+      ))
+
+    try {
+      const res = await api.put(`/users/${userId}`, {
+        role: newRole
+      })
+      toast.success(res.data.message)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+ 
   return (
     <div className="overflow-hidden">
       <ConfirmModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} onConfirm={() => deleteUser(selectedUserId)}/>
@@ -61,6 +79,7 @@ const Admin = () => {
               <th className="border py-3 px-3 text-white border-black">Username</th>
               <th className="border py-3 px-3 text-white border-black">Email</th>
               <th className="border py-3 px-3 text-white border-black">Role</th>
+              <th className="border py-3 px-3 text-white border-black">Assign Role</th>
               <th className="border py-3 px-3 text-white border-black">Created </th>
               <th className="border py-3 px-3 text-white border-black">Operation</th>
             </tr>
@@ -71,6 +90,15 @@ const Admin = () => {
                 <td className="border px-3 ">{index + 1}</td>
                 <td className="border px-3 ">{user.username}</td>
                 <td className="border px-3 ">{user.email}</td>
+                <td className="border px-3 ">
+                  <select 
+                      value={user.role || ""}
+                      onChange={(e) => handleEditRole(e, user._id)}> 
+                    <option value="" disabled>Select role</option>
+                    <option value="user">user</option>
+                    <option value="admin">admin</option>
+                  </select>
+                </td>
                 <td
                   className={`border px-3 ${
                     user.role === "admin" && "bg-green-200"
