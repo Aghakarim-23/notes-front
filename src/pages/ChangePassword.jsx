@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import api from "../api/api";
 import { toast } from "react-toastify";
+import BackButton from "../components/shared/BackButton";
 
 const ChangePassword = () => {
   const [loading, setLoading] = useState(false)
@@ -38,6 +39,7 @@ const ChangePassword = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
+        <BackButton style="absolute top-6 md:top-8 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition"/>
        <form
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
         onSubmit={(e) => {

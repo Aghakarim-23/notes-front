@@ -27,40 +27,34 @@ const Navbar = () => {
           <CgProfile className="text-[22px]" />
           <button>{user && user.username}</button>
         </div>
-          {showProfile && (
-            <button
-              className="bg-white text-red-600 absolute top-10 right-2  cursor-pointer  border-zinc-300 rounded-md border h-8 w-24"
-              onClick={() => logout()}
-            >
+        {showProfile && (
+          <div className="w-[190px] flex flex-col p-3 justify-center items-center bg-white absolute top-10  z-20 -left-10  border-zinc-300 rounded-md border">
+            <button className="w-full cursor-pointer p-3  font-medium hover:opacity-60 transition " onClick={() => logout()}>
               Logout
             </button>
-          )}
-  
+            <Link to={"/change-password"} className="w-full text-center p-3 cursor-pointer  font-medium hover:opacity-60 transition ">
+              Change password
+            </Link>
+          </div>
+        )}
       </div>
-      
 
-      {user && user.role === 'admin' && (
+      {user && user.role === "admin" && (
         <div
-      
-        onClick={() => {
-          setIsOpenShowModal(!isOpenShowModal);
-        }}
-      >
-        <FaBars className="text-2xl cursor-pointer" />
-      </div>
+          onClick={() => {
+            setIsOpenShowModal(!isOpenShowModal);
+          }}
+        >
+          <FaBars className="text-2xl cursor-pointer" />
+        </div>
       )}
-      
 
-
-        {
-          user?.role === "admin"  && 
-             <SideBar
-        isOpenShowModal={isOpenShowModal}
-        setIsOpenShowModal={setIsOpenShowModal}
-      />
-        
-        }
-     
+      {user?.role === "admin" && (
+        <SideBar
+          isOpenShowModal={isOpenShowModal}
+          setIsOpenShowModal={setIsOpenShowModal}
+        />
+      )}
     </div>
   );
 };
