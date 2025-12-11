@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await api.post("api/auth/forgotPassword", { email });
+      const res = await api.post("/api/auth/forgotPassword", { email });
       setMessage(res.data.message);
       setEmail("");
     } catch (error) {
