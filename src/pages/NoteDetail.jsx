@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { MdOutlineArrowBack } from "react-icons/md";
 import BackButton from "../components/shared/BackButton";
 import ConfirmModal from "../components/ConfirmModal.jsx"
+import { Helmet } from "react-helmet";
 
 
 const NoteDetail = () => {
@@ -48,41 +49,40 @@ const NoteDetail = () => {
   if (!note) return <p className="text-center mt-10">Note not found</p>;
 
   return (
-    <div className="h-screen bg-gray-100 flex p-4 justify-center items-center relative">
-     <BackButton style="absolute top-10 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition"/>
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-xl">
-
-        <h1 className="text-xl font-semibold mb-3">{note.title}</h1>
-
-        <p className="text-gray-700 whitespace-pre-line mb-4">
-          {note.content}
-        </p>
-
-        <p className="text-xs text-gray-400 mb-6">
-          {new Date(note.createdAt).toLocaleString()}
-        </p>
-
-        <div className="flex justify-between">
-          <button
-            onClick={() => navigate(`/notes/noteEdit/${id}`)}
-            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
-          >
-            Edit
-          </button>
-
-          <button
-            onClick={() => {
-              setIsOpenModal(!isOpenModal)
-            }}
-            className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition cursor-pointer"
-          >
-            Delete
-          </button>
+    <>
+    <Helmet>
+      <title>Note detail</title>
+    </Helmet>
+      <div className="h-screen bg-gray-100 flex p-4 justify-center items-center relative">
+       <BackButton style="absolute top-10 left-6 rounded-full border p-2 cursor-pointer hover:bg-white transition"/>
+        <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-xl">
+          <h1 className="text-xl font-semibold mb-3">{note.title}</h1>
+          <p className="text-gray-700 whitespace-pre-line mb-4">
+            {note.content}
+          </p>
+          <p className="text-xs text-gray-400 mb-6">
+            {new Date(note.createdAt).toLocaleString()}
+          </p>
+          <div className="flex justify-between">
+            <button
+              onClick={() => navigate(`/notes/noteEdit/${id}`)}
+              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => {
+                setIsOpenModal(!isOpenModal)
+              }}
+              className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition cursor-pointer"
+            >
+              Delete
+            </button>
+          </div>
         </div>
-
+        <ConfirmModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} onConfirm={() => handleDelete()}/>
       </div>
-      <ConfirmModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} onConfirm={() => handleDelete()}/>
-    </div>
+    </>
   );
 };
 
