@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import api from "../api/api";
 import { toast } from "react-toastify";
 import BackButton from "../components/shared/BackButton";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     old_password: "",
@@ -29,6 +31,7 @@ const ChangePassword = () => {
         }
         const res = await api.put("/api/auth/change-password", formData)
         toast.success(res.data?.message)
+        navigate("/login")
     } catch (error) {
         toast.error(error.response?.data?.message)
         console.error(error.response?.data?.message)
@@ -97,7 +100,7 @@ const ChangePassword = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md cursor-pointer hover:bg-blue-600 transition-colors"
+          className={`w-full bg-blue-500 text-white py-2 rounded-md cursor-pointer hover:bg-blue-600 transition-colors disabled:opacity-65`}
           disabled={loading}
         >
          {loading ? "Saving" : "Save"}
