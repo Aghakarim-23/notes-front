@@ -23,13 +23,13 @@ const Navbar = () => {
         className="flex flex-col relative"
         onClick={() => setShowProfile((prev) => !prev)}
       >
-        <div className="flex gap-2">
+        <div className="flex gap-2 cursor-pointer">
           <CgProfile className="text-[22px]" />
-          <button>{user && user.username}</button>
+          <div>{user && user.username}</div>
         </div>
         {showProfile && (
-          <div className="w-[190px] flex flex-col p-3 justify-center items-center bg-white absolute top-10  z-20 -left-10  border-zinc-300 rounded-md border">
-            <button className="w-full cursor-pointer p-3  font-medium hover:opacity-60 transition " onClick={() => logout()}>
+          <div className={`flex flex-col  justify-center items-center bg-white absolute  z-20  border-zinc-300 rounded-md border ${(user && user.role === "admin") ? "top-10 -left-2 w-[110px] text-[14px]" : "top-10 -left-9 w-[110px] text-[14px]"  }`}>
+            <button className="w-full cursor-pointer p-3  font-medium hover:opacity-60 border-b transition " onClick={() => logout()}>
               Logout
             </button>
             <Link to={"/change-password"} className="w-full text-center p-3 cursor-pointer  font-medium hover:opacity-60 transition ">
