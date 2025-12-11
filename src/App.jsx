@@ -31,6 +31,10 @@ const App = () => {
               <>
                 <Helmet>
                   <title>Home</title>
+                  <meta
+                    name="description"
+                    content="A simple Notes app to quickly write, save, and organize all your important notes."
+                  />
                 </Helmet>
                 <ProtectedPage>
                   <Notes />
@@ -101,14 +105,13 @@ const App = () => {
             path="/all-notes"
             element={
               <>
-              <Helmet>
-                <title>All notes</title>
-              </Helmet>
-               <ProtectedPage>
-                <AllNotes />
-              </ProtectedPage>
+                <Helmet>
+                  <title>All notes</title>
+                </Helmet>
+                <ProtectedPage>
+                  <AllNotes />
+                </ProtectedPage>
               </>
-             
             }
           />
           <Route path="/change-password" element={<ChangePassword />} />
