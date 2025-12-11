@@ -27,9 +27,10 @@ const ChangePassword = () => {
             setLoading(false)
             return
         }
-        const res = await api.put("/change-password", formData)
+        const res = await api.put("/api/auth/change-password", formData)
         toast.success(res.data?.message)
     } catch (error) {
+        toast.error(error.response?.data?.message)
         console.error(error.response?.data?.message)
     } finally {
         setLoading(false)
