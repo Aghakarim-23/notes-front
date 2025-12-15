@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
@@ -30,7 +32,7 @@ api.interceptors.response.use(
       localStorage.removeItem("user");
       setTimeout(() => {
         window.location.href = "/login";
-      }, 10);
+      }, 5000);
     }
 
     return Promise.reject(error);
