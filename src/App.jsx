@@ -18,6 +18,7 @@ import ResetPassword from "./pages/ResetPassword.jsx";
 import AllNotes from "./pages/AllNotes.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
 import { Helmet } from "react-helmet";
+import VerifyEmail from "./pages/VerifyEmail.jsx";
 
 const App = () => {
   return (
@@ -115,7 +116,8 @@ const App = () => {
             }
           />
           <Route path="/change-password" element={<ChangePassword />} />
-          <></>
+            <Route path="verify-email/:token" element={<VerifyEmail/>}/>
+          
         </Routes>
       </Router>
       <ToastContainer autoClose={1000} />
