@@ -29,7 +29,7 @@ const Register = () => {
     setLoading(true)
     try {
       await register(form)
-      navigate("/login")
+      navigate("/check-email")
     } catch (error) {
       console.error(error)
     } finally {

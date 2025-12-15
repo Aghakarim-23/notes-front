@@ -19,6 +19,7 @@ import AllNotes from "./pages/AllNotes.jsx";
 import ChangePassword from "./pages/ChangePassword.jsx";
 import { Helmet } from "react-helmet";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
+import CheckEmail from "./pages/CheckEmail.jsx";
 
 const App = () => {
   return (
@@ -117,6 +118,7 @@ const App = () => {
           />
           <Route path="/change-password" element={<ChangePassword />} />
             <Route path="verify-email/:token" element={<VerifyEmail/>}/>
+            <Route path="check-email" element={<CheckEmail/>}/>
           
         </Routes>
       </Router>
