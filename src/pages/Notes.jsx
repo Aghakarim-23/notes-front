@@ -10,6 +10,8 @@ const Notes = () => {
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
   const [isOpenShowModal, setIsOpenShowModal] = useState(false)
+  const [search, setSearch] = useState("")
+
 
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const Notes = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 ">
-      {token && <Navbar/>}
+      {token && <Navbar search={search} setSearch={setSearch} />}
       <div className="max-w-4xl mx-auto relative p-4">
         <h1 className="text-3xl font-bold my-8 text-center">Your Notes</h1>
 
