@@ -15,25 +15,33 @@ const Notes = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getNotes = async () => {
-      try {
-        setLoading(true);
-        const res = await api.get("/notes/getNotes", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setNotes(res.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const getNotes = async () => {
+    try {
+      setLoading(true);
 
-    getNotes();
-  }, [token]);
+      let res;
+      if (search.trim() !== "") {
+        res = await api.get(`/notes/search?search=${search}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else {
+        res = await api.get(`/notes/getNotes`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+
+      setNotes(res.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  getNotes();
+}, [token, search]);
+
 
   return (
     <div className="min-h-screen bg-gray-100 ">

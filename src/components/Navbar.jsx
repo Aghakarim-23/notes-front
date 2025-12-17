@@ -11,13 +11,7 @@ const Navbar = ({search,setSearch}) => {
   const [showProfile, setShowProfile] = useState(false);
   const [isOpenShowModal, setIsOpenShowModal] = useState(true);
 
-  const handleSubmit = async () => {
-    try {
-      const res = await api.get(`/notes/search?/search=${search}`)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+
 
   return (
     <div className="flex justify-between h-24 px-4 items-center relative  ">
@@ -30,7 +24,6 @@ const Navbar = ({search,setSearch}) => {
         </div> */}
       <form onSubmit={(e) => {
         e.preventDefault()
-        handleSubmit()
       }}
       >
 
@@ -41,7 +34,6 @@ const Navbar = ({search,setSearch}) => {
               value={search}
               onChange={(e) => setSearch(e.target.value) }/>
           <button 
-              onClick={handleSubmit}
               className="px-2 py-2 border rounded-md cursor-pointer">Find</button>
         </div>
       </form>
