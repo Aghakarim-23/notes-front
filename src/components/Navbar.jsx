@@ -22,22 +22,28 @@ const Navbar = ({search,setSearch}) => {
           {user?.role === "admin" && <Link to={'/admin'} className='text-[20px] hover:opacity-60 transition'>Admin</Link>}
           {user?.role === "admin" && <Link to={'/all-notes'} className='text-[20px] hover:opacity-60 transition'>All Posts</Link>}
         </div> */}
-      <form onSubmit={(e) => {
-        e.preventDefault()
-      }}
-      >
 
-        <div>
-          <input 
-              className="rounded-md border pl-2 py-2"
-              type="text" placeholder="Find your notes..." 
-              value={search}
-              onChange={(e) => setSearch(e.target.value) }/>
-          <button 
-              className="px-2 py-2 border rounded-md cursor-pointer">Find</button>
-        </div>
-      </form>
-      <div
+        {/* desktop search  */}
+
+          <form 
+              className='hidden md:flex md:items-center gap-4 max-w-[250px] md:max-w-[500px]  w-full'
+              onSubmit={(e) => {
+                  e.preventDefault()
+                }}
+                >
+          
+                  <div className="w-full">
+                    <input 
+                        className="rounded-md border border-gray-400 pl-2 md:pl-3 py-2 w-full"
+                        type="text" placeholder="Find your notes..." 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value) }/>
+                
+                  </div>
+                </form>
+      
+ <div className="flex gap-4">
+       <div
         className="flex flex-col relative"
         onClick={() => setShowProfile((prev) => !prev)}
       >
@@ -83,8 +89,11 @@ const Navbar = ({search,setSearch}) => {
         <SideBar
           isOpenShowModal={isOpenShowModal}
           setIsOpenShowModal={setIsOpenShowModal}
+          search={search}
+          setSearch={setSearch}
         />
       )}
+ </div>
     </div>
   );
 };
